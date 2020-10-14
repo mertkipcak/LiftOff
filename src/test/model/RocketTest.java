@@ -105,6 +105,10 @@ class RocketTest {
         assertFalse(testRocket.checkCollisionTwo( new Obstacle(40)));
         testRocket.setX(80);
         assertFalse(testRocket.checkCollisionTwo( new Obstacle(40)));
+        testRocket.setX(23);
+        assertFalse(testRocket.checkCollisionTwo( new Obstacle(40)));
+        testRocket.setX(24);
+        assertTrue(testRocket.checkCollisionTwo( new Obstacle(40)));
     }
 
     @Test
@@ -133,5 +137,6 @@ class RocketTest {
         testRocket.setAlt(150);
         assertEquals(150, testRocket.getAlt());
     }
+
 
 }

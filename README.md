@@ -31,7 +31,7 @@ completed yet as I need to learn more about the java coordinate system.
 
 ## User Stories
 
-- As a user, I would like to be able to add multiple obstacles to LiftOffGame.
+- As a user, I would like to be able to add multiple Obstacles to a LiftOffGame.
 - As a user, I would like to be able to buy upgrades.
 - As a user, I would like to be able to control my rockets x value.
 - As a user, I would like to be able to reset the game.

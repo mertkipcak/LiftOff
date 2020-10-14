@@ -1,6 +1,7 @@
 package model;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 // console version of the game for the phase 1 of the project
 public class LiftOffConsoleGame {
@@ -8,9 +9,10 @@ public class LiftOffConsoleGame {
     public static final int MAX_X = 100;
     public static final int UPGRADE_PRICE = 2000;
 
+    private static final Random random = new Random();
+
     private Rocket rocket;
     private LinkedList<Obstacle> obstacles;
-    private boolean isShopOpen = false;
 
     public LiftOffConsoleGame() {
         rocket = new Rocket(MAX_X / 2);
@@ -40,15 +42,16 @@ public class LiftOffConsoleGame {
         obstacles.clear();
         rocket.setAlt(0);
         rocket.setHealth(rocket.getHealthLevel() + 1);
+        rocket.setFuel(100);
     }
 
     // MODIFIES: this
     // EFFECTS: clears all obstacles and adds 3 new obstacles
     public void updateObstacles() {
         obstacles.clear();
-        obstacles.add(new Obstacle((int) Math.random() * (MAX_X - 32) + 16));
-        obstacles.add(new Obstacle((int) Math.random() * (MAX_X - 32) + 16));
-        obstacles.add(new Obstacle((int) Math.random() * (MAX_X - 32) + 16));
+        obstacles.add(new Obstacle(random.nextInt(MAX_X - 32) + 16));
+        obstacles.add(new Obstacle(random.nextInt(MAX_X - 32) + 16));
+        obstacles.add(new Obstacle(random.nextInt(MAX_X - 32) + 16));
     }
 
     // EFFECTS: check if the x value of the rocket intersects with any obstacles. return true if any intersects.
@@ -70,7 +73,6 @@ public class LiftOffConsoleGame {
     // EFFECTS: return true, open shop and add the money if the day has ended, else return false
     public boolean checkDayEnd() {
         if (rocket.outOfHealth() || checkFuelEmpty()) {
-            isShopOpen = true;
             rocket.playerMoney += getRocket().getAlt();
             return true;
         } else {
@@ -92,11 +94,8 @@ public class LiftOffConsoleGame {
         if (checkCollisions()) {
             rocket.reduceHealth();
         }
-        if (!checkDayEnd()) {
-            updateObstacles();
-            rocket.useFuel();
-            rocket.moveUp();
-        }
+        rocket.useFuel();
+        rocket.moveUp();
     }
 
     // MODIFIES: this

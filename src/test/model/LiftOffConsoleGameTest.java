@@ -88,7 +88,6 @@ public class LiftOffConsoleGameTest {
         testGame.update();
         assertEquals(Rocket.BASE_SPEED, rocket.getAlt());
         assertEquals(100 - Rocket.CONSUMPTION_PER_SECOND, rocket.getFuel());
-        assertEquals(3, obstacles.size());
     }
 
     @Test
@@ -98,33 +97,7 @@ public class LiftOffConsoleGameTest {
         testGame.update();
         assertEquals(Rocket.BASE_SPEED, rocket.getAlt());
         assertEquals(100 - Rocket.CONSUMPTION_PER_SECOND, rocket.getFuel());
-        assertEquals(3, obstacles.size());
         assertEquals(1, rocket.getHealth());
-    }
-
-    @Test
-    public void testUpdateThree() {
-        rocket.setFuel(0);
-        rocket.setAlt(1000);
-        testGame.update();
-        assertEquals(1000, rocket.getAlt());
-        assertEquals(0, rocket.getFuel());
-        assertEquals(0, obstacles.size());
-        assertEquals(1, rocket.getHealth());
-        assertEquals(1000, rocket.playerMoney);
-    }
-
-    @Test
-    public void testUpdateFour() {
-        rocket.setHealth(1);
-        obstacles.add( new Obstacle(LiftOffConsoleGame.MAX_X / 2));
-        rocket.setAlt(1000);
-        testGame.update();
-        assertEquals(1000, rocket.getAlt());
-        assertEquals(100, rocket.getFuel());
-        assertEquals(1, obstacles.size());
-        assertEquals(0, rocket.getHealth());
-        assertEquals(1000, rocket.playerMoney);
     }
 
     @Test
@@ -158,7 +131,7 @@ public class LiftOffConsoleGameTest {
     @Test
     public void testUpgradeHealthOne() {
         rocket.playerMoney = 1;
-        assertFalse(testGame.upgradeSpeed());
+        assertFalse(testGame.upgradeHealth());
     }
 
     @Test

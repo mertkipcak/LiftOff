@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 // Represents the rocket (and also any progress in the game like money and upgrades)
 public class Rocket {
-    public static final int BASE_SPEED = 10;                        // base speed of the rocket (in m/s)
+    public static final int BASE_SPEED = 100;                        // base speed of the rocket (in m/s)
     public static final int CONSUMPTION_PER_SECOND = 10;            // how much unit fuel rocket spends in a second
     public static final int Y_POS = LiftOffGame.HEIGHT - 20;      // y position of the rocket on screen
     public static final int SIZE_Y = 18;                          // height of the rocket

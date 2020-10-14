@@ -20,10 +20,12 @@ I may add a theme and visual later on as I progress through the project.
 ## Note for the first phase
 
 First phase of the game will be designed as a console game where player tries to find an 
-x value for the rocket where the rocket will not hit any obstacles. I did this as it is impossible to 
-implement the final real time 2D game to a console interface. However, all of the "User Stories"
-are implemented for both LiftOffGame and LiftOffConsoleGame. Tests for non-console game are not
-yet completed as I need to learn more about the java coordinate system.
+x value for the rocket where the rocket will not hit any obstacles (obstacles will have a x value 
+and side length that the player needs to dodge. I did this as it is impossible to 
+implement the final real time 2D game to a console interface. However, all the "User Stories"
+are implemented for LiftOffConsoleGame. LiftOffGame and its tests have been completely commented out
+as they will not be used until further phases. Tests for non-console game are also not
+completed yet as I need to learn more about the java coordinate system.
 
 **Also in this version of the game width of the rocket is just 1**
 

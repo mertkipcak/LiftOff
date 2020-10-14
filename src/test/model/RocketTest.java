@@ -12,7 +12,7 @@ class RocketTest {
 
     @BeforeEach
     public void runBefore() {
-        testRocket = new Rocket(LiftOffGame.WIDTH / 2);
+        testRocket = new Rocket(LiftOffConsoleGame.WIDTH / 2);
     }
 
     @Test
@@ -34,28 +34,28 @@ class RocketTest {
         testRocket.moveRight();
         assertEquals(testRocket.getSteeringLevel() * STEERING_INCREASE_PER_LEVEL +
                         BASE_STEERING_SPEED +
-                        LiftOffGame.WIDTH / 2,
+                        LiftOffConsoleGame.WIDTH / 2,
                 testRocket.getX());
     }
 
     @Test
     public void testMoveRightTwo() {
-        testRocket.setX(LiftOffGame.WIDTH - BASE_STEERING_SPEED);
+        testRocket.setX(LiftOffConsoleGame.WIDTH - BASE_STEERING_SPEED);
         testRocket.moveRight();
-        assertEquals(LiftOffGame.WIDTH, testRocket.getX());
+        assertEquals(LiftOffConsoleGame.WIDTH, testRocket.getX());
     }
 
     @Test
     public void testMoveRightThree() {
-        testRocket.setX(LiftOffGame.WIDTH - BASE_STEERING_SPEED / 2);
+        testRocket.setX(LiftOffConsoleGame.WIDTH - BASE_STEERING_SPEED / 2);
         testRocket.moveRight();
-        assertEquals(LiftOffGame.WIDTH, testRocket.getX());
+        assertEquals(LiftOffConsoleGame.WIDTH, testRocket.getX());
     }
 
     @Test
     public void testMoveLeftOne() {
         testRocket.moveLeft();
-        assertEquals(LiftOffGame.WIDTH / 2 -
+        assertEquals(LiftOffConsoleGame.WIDTH / 2 -
                         (testRocket.getSteeringLevel() * STEERING_INCREASE_PER_LEVEL + BASE_STEERING_SPEED),
                 testRocket.getX());
     }
@@ -84,12 +84,14 @@ class RocketTest {
     // TODO: rewrite the tests of this f again when
     //       you have better understanding of java coordinate system.
     // @Test
+    /*
     public void testCheckCollision() {
         Obstacle o = new Obstacle();
         o.setY(Y_POS);
         o.setX(testRocket.getX());
         assertTrue(testRocket.checkCollision(o));
     }
+     */
 
     @Test
     public void testCheckCollisionTwo() {
@@ -124,6 +126,12 @@ class RocketTest {
         assertFalse(testRocket.outOfHealth());
         testRocket.reduceHealth();
         assertTrue(testRocket.outOfHealth());
+    }
+
+    @Test
+    public void testSetAlt() {
+        testRocket.setAlt(150);
+        assertEquals(150, testRocket.getAlt());
     }
 
 }

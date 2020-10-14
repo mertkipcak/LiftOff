@@ -30,5 +30,13 @@ public class ObstacleTest {
         assertEquals(8 * speed, testObstacle.getY());
     }
 
+    @Test
+    public void testForSet() {
+        testObstacle.setX(15);
+        testObstacle.setY(35);
+        assertEquals(35, testObstacle.getY());
+        assertEquals(15, testObstacle.getX());
+    }
+
 
 }

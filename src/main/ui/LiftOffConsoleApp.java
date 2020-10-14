@@ -30,6 +30,8 @@ public class LiftOffConsoleApp {
 
             if (command.equals("q")) {
                 keepGoing = false;
+            } else if (command.equals("r")) {
+                game.newGame();
             } else {
                 processShopCommand(command);
             }
@@ -45,6 +47,7 @@ public class LiftOffConsoleApp {
         System.out.println("\t1 -> upgrade rocket speed");
         System.out.println("\t2 -> upgrade rocket fuel");
         System.out.println("\t3 -> upgrade rocket health");
+        System.out.println("\tr -> reset");
         System.out.println("\tq -> quit");
     }
 

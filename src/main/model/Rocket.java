@@ -1,16 +1,13 @@
 package model;
 
 
-import java.awt.*;
-import java.util.LinkedList;
-
 // Represents the rocket (and also any progress in the game like money and upgrades)
 public class Rocket {
     public static final int BASE_SPEED = 100;                        // base speed of the rocket (in m/s)
     public static final int CONSUMPTION_PER_SECOND = 10;            // how much unit fuel rocket spends in a second
-    public static final int Y_POS = LiftOffGame.HEIGHT - 20;      // y position of the rocket on screen
-    public static final int SIZE_Y = 18;                          // height of the rocket
-    public static final int SIZE_X = 6;                           // width of the rocket
+    // public static final int Y_POS = LiftOffGame.HEIGHT - 20;      // y position of the rocket on screen
+    // public static final int SIZE_Y = 18;                          // height of the rocket
+    // public static final int SIZE_X = 6;                           // width of the rocket
     public static final int BASE_STEERING_SPEED = 10;
     public static final int STEERING_INCREASE_PER_LEVEL = 5;
 
@@ -35,10 +32,13 @@ public class Rocket {
         rocketX = x;
     }
 
+    // EFFECTS for all get and set values:  getA returns A
+    //                                      setA(a) sets A to a
     public int getX() {
         return rocketX;
     }
 
+    // REQUIRES: 0 < x < LiftOffConsoleGame.WIDTH
     public void setX(int x) {
         this.rocketX = x;
     }
@@ -47,6 +47,7 @@ public class Rocket {
         return alt;
     }
 
+    // REQUIRES: 0 < i
     public void setAlt(int i) {
         alt = i;
     }
@@ -55,6 +56,7 @@ public class Rocket {
         return health;
     }
 
+    // REQUIRES: 0 <= hp
     public void setHealth(int hp) {
         health = hp;
     }
@@ -63,6 +65,7 @@ public class Rocket {
         return speedLevel;
     }
 
+    // REQUIRES: 0 <= x
     public void setSpeedLevel(int x) {
         speedLevel = x;
     }
@@ -71,14 +74,11 @@ public class Rocket {
         return steeringLevel;
     }
 
-    public void setSteeringLevel(int x) {
-        steeringLevel = x;
-    }
-
     public int getFuelLevel() {
         return fuelLevel;
     }
 
+    // REQUIRES: 0 <= x
     public void setFuelLevel(int x) {
         fuelLevel = x;
     }
@@ -87,6 +87,7 @@ public class Rocket {
         return healthLevel;
     }
 
+    // REQUIRES: 0 <= x
     public void setHealthLevel(int x) {
         healthLevel = x;
     }
@@ -95,6 +96,7 @@ public class Rocket {
         return fuel;
     }
 
+    // REQUIRES: 0 <= f
     public void setFuel(int f) {
         fuel = f;
     }
@@ -123,12 +125,13 @@ public class Rocket {
     }
 
     // MODIFIES: this
-    // EFFECTS: sets the x vale of the rocket to edge values (0 and LiftOffGame.WIDTH) if it tries to move past them
+    // EFFECTS: sets the x vale of the rocket to edge values (0 and LiftOffConsoleGame.WIDTH)
+    //          if it tries to move past them
     public void handleBoundary() {
         if (rocketX < 0) {
             rocketX = 0;
-        } else if (rocketX > LiftOffGame.WIDTH) {
-            rocketX = LiftOffGame.WIDTH;
+        } else if (rocketX > LiftOffConsoleGame.WIDTH) {
+            rocketX = LiftOffConsoleGame.WIDTH;
         }
     }
 
@@ -138,6 +141,10 @@ public class Rocket {
         fuel -= CONSUMPTION_PER_SECOND - fuelLevel;
     }
 
+    /*
+
+    this method will be used in later phases so commenting it out for now as I need to learn more about
+    the coordinate system to implement and write tests for this method.
 
     // EFFECTS: return true if rocket is touching any obstacles
     public boolean checkCollision(Obstacle o) {
@@ -149,6 +156,7 @@ public class Rocket {
                 Obstacle.SIDE_LENGTH);
         return rocketBoundingRect.intersects(obstacleBoundingRect);
     }
+    */
 
     public boolean checkCollisionTwo(Obstacle o) {
         int lowerEdge = o.getX() - (Obstacle.SIDE_LENGTH - 1) / 2;

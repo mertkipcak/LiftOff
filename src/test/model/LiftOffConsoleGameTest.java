@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 
+import static model.LiftOffConsoleGame.WIDTH;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LiftOffConsoleGameTest {
@@ -18,6 +19,39 @@ public class LiftOffConsoleGameTest {
         testGame = new LiftOffConsoleGame();
         rocket = testGame.getRocket();
         obstacles = testGame.getObstacles();
+    }
+
+    @Test
+    public void testNewDay() {
+        rocket.playerMoney = 1500;
+        rocket.setSpeedLevel(5);
+        rocket.setX(87);
+        rocket.setAlt(9000);
+        rocket.setHealthLevel(5);
+        rocket.setHealth(2);
+        rocket.setFuel(20);
+        obstacles.add( new Obstacle() );
+        testGame.newDay();
+        assertEquals(1500, rocket.playerMoney);
+        assertEquals(5, rocket.getSpeedLevel());
+        assertEquals(87, rocket.getX());
+        assertEquals(0, rocket.getAlt());
+        assertEquals(6, rocket.getHealth());
+        assertEquals(100, rocket.getFuel());
+        assertTrue(obstacles.isEmpty());
+    }
+
+    @Test
+    public void testNewGame() {
+        rocket.playerMoney = 1500;
+        rocket.setSpeedLevel(5);
+        rocket.setX(87);
+        obstacles.add( new Obstacle() );
+        testGame.newGame();
+        assertNotEquals(rocket, testGame.getRocket());
+        assertEquals(0, testGame.getRocket().playerMoney);
+        assertEquals(0, testGame.getRocket().getSpeedLevel());
+        assertTrue(obstacles.isEmpty());
     }
 
     @Test
@@ -93,7 +127,7 @@ public class LiftOffConsoleGameTest {
     @Test
     public void testUpdateTwo() {
         rocket.setHealth(2);
-        obstacles.add(new Obstacle(LiftOffConsoleGame.MAX_X / 2));
+        obstacles.add(new Obstacle(WIDTH / 2));
         testGame.update();
         assertEquals(Rocket.BASE_SPEED, rocket.getAlt());
         assertEquals(100 - Rocket.CONSUMPTION_PER_SECOND, rocket.getFuel());

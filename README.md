@@ -35,6 +35,7 @@ completed yet as I need to learn more about the java coordinate system.
 - As a user, I would like to be able to buy upgrades.
 - As a user, I would like to be able to control my rockets x value.
 - As a user, I would like to be able to reset the game.
-- As a user, I would like to be able to lose a life when I hit obstacles 
+- As a user, I would like to be able to lose a life when I hit obstacles.
 - As a user, I would like to be able to finish the day when my life reaches 0.
-
+- As a user, I would like to be able to save my progress in the game.
+- As a user, when I start the application, I want to be given the opportunity to load my progress or start a new game.

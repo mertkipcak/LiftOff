@@ -176,4 +176,20 @@ public class LiftOffConsoleGameTest {
         assertEquals(1, rocket.getHealthLevel());
     }
 
+    @Test
+    public void testSetRocket() {
+        Rocket newRocket = new Rocket(5);
+        newRocket.setSteeringLevel(5);
+        newRocket.setHealthLevel(3);
+        newRocket.setFuelLevel(7);
+        newRocket.setSpeedLevel(1);
+        newRocket.playerMoney = 8300;
+        testGame.setRocket(newRocket);
+        assertEquals(1, newRocket.getSpeedLevel());
+        assertEquals(3, newRocket.getHealthLevel());
+        assertEquals(5, newRocket.getSteeringLevel());
+        assertEquals(7, newRocket.getFuelLevel());
+        assertEquals(8300, newRocket.playerMoney);
+    }
+
 }

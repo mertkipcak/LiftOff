@@ -1,8 +1,11 @@
 package model;
 
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents the rocket (and also any progress in the game like money and upgrades)
-public class Rocket {
+public class Rocket implements Writable {
     public static final int BASE_SPEED = 100;                        // base speed of the rocket (in m/s)
     public static final int CONSUMPTION_PER_SECOND = 10;            // how much unit fuel rocket spends in a second
     // public static final int Y_POS = LiftOffGame.HEIGHT - 20;      // y position of the rocket on screen
@@ -30,6 +33,17 @@ public class Rocket {
      */
     public Rocket(int x) {
         rocketX = x;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("speedLevel", speedLevel);
+        json.put("steeringLevel", steeringLevel);
+        json.put("fuelLevel", fuelLevel);
+        json.put("healthLevel", healthLevel);
+        json.put("playerMoney", playerMoney);
+        return json;
     }
 
     // EFFECTS for all get and set values:  getA returns A
@@ -72,6 +86,10 @@ public class Rocket {
 
     public int getSteeringLevel() {
         return steeringLevel;
+    }
+
+    public void setSteeringLevel(int i) {
+        steeringLevel = i;
     }
 
     public int getFuelLevel() {

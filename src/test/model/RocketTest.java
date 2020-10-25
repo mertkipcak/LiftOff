@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +14,16 @@ class RocketTest {
     @BeforeEach
     public void runBefore() {
         testRocket = new Rocket(LiftOffConsoleGame.WIDTH / 2);
+    }
+
+    @Test
+    public void testToJson() {
+        JSONObject object = testRocket.toJson();
+        assertEquals(testRocket.getSteeringLevel(), object.get("steeringLevel"));
+        assertEquals(testRocket.getSpeedLevel(), object.get("speedLevel"));
+        assertEquals(testRocket.getHealthLevel(), object.get("healthLevel"));
+        assertEquals(testRocket.getFuelLevel(), object.get("fuelLevel"));
+        assertEquals(testRocket.playerMoney, object.get("playerMoney"));
     }
 
     @Test
@@ -136,6 +147,12 @@ class RocketTest {
     public void testSetAlt() {
         testRocket.setAlt(150);
         assertEquals(150, testRocket.getAlt());
+    }
+
+    @Test
+    public void testSetSteeringLevel() {
+        testRocket.setSteeringLevel(3);
+        assertEquals(3, testRocket.getSteeringLevel());
     }
 
 

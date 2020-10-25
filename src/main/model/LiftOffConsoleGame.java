@@ -26,6 +26,10 @@ public class LiftOffConsoleGame {
         return rocket;
     }
 
+    public void setRocket(Rocket r) {
+        this.rocket = r;
+    }
+
     // EFFECTS: returns obstacles
     public LinkedList<Obstacle> getObstacles() {
         return obstacles;

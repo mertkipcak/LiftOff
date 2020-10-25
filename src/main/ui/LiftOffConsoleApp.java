@@ -1,7 +1,5 @@
 package ui;
 
-
-import exceptions.NumberOutOfRangeException;
 import model.LiftOffConsoleGame;
 import persistence.JsonReader;
 import persistence.JsonWriter;

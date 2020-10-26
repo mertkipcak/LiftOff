@@ -17,6 +17,8 @@ minimum number of days.
 
 I may add a theme and visual later on as I progress through the project.
 
+Json implementation have been heavily inspired and copied from JsonSerializationDemo.
+
 ## Note for the first phase
 
 First phase of the game will be designed as a console game where player tries to find an 

@@ -152,6 +152,7 @@ public class LiftOffGame {
     public void upgradeSteering() {
         if (rocket.playerMoney >= UPGRADE_PRICE) {
             rocket.setSteeringLevel(rocket.getSteeringLevel() + 1);
+            rocket.getControl().steeringLevel = rocket.getSteeringLevel();
             rocket.playerMoney -= UPGRADE_PRICE;
             message = "Steering upgraded";
         } else {
@@ -213,6 +214,7 @@ public class LiftOffGame {
             checkCollisions();
             checkDayOver();
             addObstacle();
+            rocket.getControl().move();
         }
     }
 

@@ -37,7 +37,7 @@ public class GamePanel extends JPanel {
             backgroundImage = ImageIO.read(new File("./textures/starryBackground.jpg"));
             rocketImage = ImageIO.read(new File("./textures/BasicRocket.jpg"));
         } catch (IOException ex) {
-            // handle exception...
+            System.out.println("Wasn't able to get textures");
         }
         this.game = g;
     }

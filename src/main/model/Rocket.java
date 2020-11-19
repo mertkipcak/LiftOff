@@ -25,10 +25,12 @@ public class Rocket implements Writable {
     private int speedLevel = 0;             // number of speed upgrades done
     private int fuelLevel = 0;              // number of fuel upgrades done
     private int healthLevel = 0;            // number of health upgrades done
+    private Control control;
 
 
     public Rocket(int x) {
         rocketX = x;
+        control = new ExactControl(x);
     }
 
     @Override
@@ -113,6 +115,10 @@ public class Rocket implements Writable {
     // REQUIRES: 0 <= f
     public void setFuel(int f) {
         fuel = f;
+    }
+
+    public Control getControl() {
+        return control;
     }
 
     // MODIFIES: this

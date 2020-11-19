@@ -8,11 +8,17 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+import model.Rocket;
 import org.json.*;
 
 // Represents a reader that reads workroom from JSON data stored in file
 public class JsonReader {
     private String source;
+
+    // getter method
+    public String getSource() {
+        return source;
+    }
 
     // EFFECTS: constructs reader to read from source file
     public JsonReader(String source) {

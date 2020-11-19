@@ -1,36 +1,32 @@
 package model;
 
-
 import org.json.JSONObject;
 import persistence.Writable;
 
-// Represents the rocket (and also any progress in the game like money and upgrades)
+import java.awt.*;
+
 public class Rocket implements Writable {
     public static final int BASE_SPEED = 100;                        // base speed of the rocket (in m/s)
     public static final int CONSUMPTION_PER_SECOND = 10;            // how much unit fuel rocket spends in a second
-    // public static final int Y_POS = LiftOffGame.HEIGHT - 20;      // y position of the rocket on screen
-    // public static final int SIZE_Y = 18;                          // height of the rocket
-    // public static final int SIZE_X = 6;                           // width of the rocket
+    public static final int Y_POS = LiftOffGame.HEIGHT - 40;      // y position of the rocket on screen
+    public static final int SIZE_Y = 50;                          // height of the rocket
+    public static final int SIZE_X = 24;                           // width of the rocket
+    public static final int INITIAL_FUEL = 10000;
     public static final int BASE_STEERING_SPEED = 10;
     public static final int STEERING_INCREASE_PER_LEVEL = 5;
 
 
-    private int fuel = 100;                 // fuel that is left in the rocket
+    public int playerMoney = 0;
+    protected int rocketX;            // x position of the rocket on the screen
+    protected int steeringLevel = 0;          // number of steering upgrades done
+    private int fuel = INITIAL_FUEL;                 // fuel that is left in the rocket
     private int alt = 0;                    // altitude of the rocket
-    private int rocketX;            // x position of the rocket on the screen
     private int health = 1;            // remaining health of the rocket
     private int speedLevel = 0;             // number of speed upgrades done
-    private int steeringLevel = 0;          // number of steering upgrades done
     private int fuelLevel = 0;              // number of fuel upgrades done
     private int healthLevel = 0;            // number of health upgrades done
 
-    public int playerMoney = 0;
 
-
-    /*
-     * REQUIRES: accountName has a non-zero length
-     * EFFECTS: playerName is set to name
-     */
     public Rocket(int x) {
         rocketX = x;
     }
@@ -52,7 +48,7 @@ public class Rocket implements Writable {
         return rocketX;
     }
 
-    // REQUIRES: 0 < x < LiftOffConsoleGame.WIDTH
+    // REQUIRES: 0 < x < LiftOffGame.WIDTH
     public void setX(int x) {
         this.rocketX = x;
     }
@@ -119,9 +115,6 @@ public class Rocket implements Writable {
         fuel = f;
     }
 
-
-
-
     // MODIFIES: this
     // EFFECTS: increase the alt of the rocket by BASE_SPEED + f(speedLevel)
     public void moveUp() {
@@ -129,27 +122,13 @@ public class Rocket implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: moves to rocket to the right
-    public void moveRight() {
-        rocketX += steeringLevel * STEERING_INCREASE_PER_LEVEL + BASE_STEERING_SPEED;
-        handleBoundary();
-    }
-
-    // MODIFIES: this
-    // EFFECTS: moves to rocket to the right
-    public void moveLeft() {
-        rocketX -= steeringLevel * STEERING_INCREASE_PER_LEVEL + BASE_STEERING_SPEED;
-        handleBoundary();
-    }
-
-    // MODIFIES: this
-    // EFFECTS: sets the x vale of the rocket to edge values (0 and LiftOffConsoleGame.WIDTH)
+    // EFFECTS: sets the x vale of the rocket to edge values (0 and LiftOffGame.WIDTH)
     //          if it tries to move past them
     public void handleBoundary() {
-        if (rocketX < 0) {
-            rocketX = 0;
-        } else if (rocketX > LiftOffConsoleGame.WIDTH) {
-            rocketX = LiftOffConsoleGame.WIDTH;
+        if (rocketX < SIZE_X / 2) {
+            rocketX = SIZE_X / 2;
+        } else if (rocketX > LiftOffGame.WIDTH - SIZE_X / 2) {
+            rocketX = LiftOffGame.WIDTH - SIZE_X / 2;
         }
     }
 
@@ -159,30 +138,16 @@ public class Rocket implements Writable {
         fuel -= CONSUMPTION_PER_SECOND - fuelLevel;
     }
 
-    /*
-
-    this method will be used in later phases so commenting it out for now as I need to learn more about
-    the coordinate system to implement and write tests for this method.
-
     // EFFECTS: return true if rocket is touching any obstacles
     public boolean checkCollision(Obstacle o) {
-        Rectangle rocketBoundingRect = new Rectangle((int) getX() - SIZE_X / 2,
-                (int) Y_POS - SIZE_Y / 2, SIZE_X, SIZE_Y);
-        Rectangle obstacleBoundingRect = new Rectangle((int) o.getX() - Obstacle.SIDE_LENGTH,
-                (int)o.getX() - Obstacle.SIDE_LENGTH,
+        Rectangle rocketBoundingRect = new Rectangle(getX() - SIZE_X / 2,
+                Y_POS - SIZE_Y / 2, SIZE_X, SIZE_Y);
+        Rectangle obstacleBoundingRect = new Rectangle(o.getX() - Obstacle.SIDE_LENGTH / 2,
+                o.getY() - Obstacle.SIDE_LENGTH / 2,
                 Obstacle.SIDE_LENGTH,
                 Obstacle.SIDE_LENGTH);
         return rocketBoundingRect.intersects(obstacleBoundingRect);
     }
-    */
-
-    public boolean checkCollisionTwo(Obstacle o) {
-        int lowerEdge = o.getX() - (Obstacle.SIDE_LENGTH - 1) / 2;
-        int upperEdge = o.getX() + (Obstacle.SIDE_LENGTH - 1) / 2;
-        return (rocketX <= upperEdge && rocketX >= lowerEdge);
-    }
-
-
 
     // EFFECTS: return true if rocket is out of fuel
     public boolean checkFuelEmpty() {
@@ -198,6 +163,20 @@ public class Rocket implements Writable {
     // EFFECTS: reduce the health of the rocket by 1
     public void reduceHealth() {
         health--;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: moves to rocket to the right
+    public void moveRight() {
+        rocketX += steeringLevel * STEERING_INCREASE_PER_LEVEL + BASE_STEERING_SPEED;
+        handleBoundary();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: moves to rocket to the right
+    public void moveLeft() {
+        rocketX -= steeringLevel * STEERING_INCREASE_PER_LEVEL + BASE_STEERING_SPEED;
+        handleBoundary();
     }
 
 }

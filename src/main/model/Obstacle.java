@@ -1,11 +1,14 @@
 package model;
 
-import static model.LiftOffConsoleGame.WIDTH;
+import java.awt.*;
+
+import static model.LiftOffGame.WIDTH;
 
 // Represents an obstacle
 public class Obstacle {
 
     public static int SIDE_LENGTH = 33;
+    public static Color COLOR = new Color(111, 111, 111);
 
     private int obstacleX;
     private int obstacleY;
@@ -17,14 +20,15 @@ public class Obstacle {
     public Obstacle() {
         this.obstacleX = (int) (Math.random() * (WIDTH - 2 * SIDE_LENGTH + 1) + SIDE_LENGTH);
         this.obstacleY = 0;
-        this.fallSpeed = (int) (Math.random() * 21 + 10);
+        this.fallSpeed = (int) (Math.random() * 6 + 10);
     }
 
     // REQUIRES: 0 < x < LiftOffConsoleGame.WIDTH
     // EFFECTS: public constructor for the console version of the game
     //          y and fallSpeed is irrelevant in this game so only initializes x and side
-    public Obstacle(int x) {
+    public Obstacle(int x, int y) {
         this.obstacleX = x;
+        this.obstacleY = y;
     }
 
     // MODIFIES: this

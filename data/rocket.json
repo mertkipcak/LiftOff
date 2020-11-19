@@ -2,6 +2,6 @@
     "speedLevel": 0,
     "steeringLevel": 0,
     "healthLevel": 0,
-    "fuelLevel": 1,
-    "playerMoney": 100
+    "fuelLevel": 0,
+    "playerMoney": 0
 }

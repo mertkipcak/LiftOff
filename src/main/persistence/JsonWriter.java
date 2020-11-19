@@ -1,6 +1,7 @@
 package persistence;
 
 import model.Rocket;
+import model.Rocket;
 import org.json.JSONObject;
 
 
@@ -15,6 +16,11 @@ public class JsonWriter {
     // EFFECTS: constructs writer to write to destination file
     public JsonWriter(String destination) {
         this.destination = destination;
+    }
+
+    // getter method
+    public String getDestination() {
+        return destination;
     }
 
     // MODIFIES: this

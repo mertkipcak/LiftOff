@@ -13,7 +13,7 @@ class RocketTest {
 
     @BeforeEach
     public void runBefore() {
-        testRocket = new Rocket(LiftOffConsoleGame.WIDTH / 2);
+        testRocket = new Rocket(LiftOffGame.WIDTH / 2);
     }
 
     @Test
@@ -45,28 +45,28 @@ class RocketTest {
         testRocket.moveRight();
         assertEquals(testRocket.getSteeringLevel() * STEERING_INCREASE_PER_LEVEL +
                         BASE_STEERING_SPEED +
-                        LiftOffConsoleGame.WIDTH / 2,
+                        LiftOffGame.WIDTH / 2,
                 testRocket.getX());
     }
 
     @Test
     public void testMoveRightTwo() {
-        testRocket.setX(LiftOffConsoleGame.WIDTH - BASE_STEERING_SPEED);
+        testRocket.setX(LiftOffGame.WIDTH - BASE_STEERING_SPEED);
         testRocket.moveRight();
-        assertEquals(LiftOffConsoleGame.WIDTH, testRocket.getX());
+        assertEquals(LiftOffGame.WIDTH - SIZE_X / 2, testRocket.getX());
     }
 
     @Test
     public void testMoveRightThree() {
-        testRocket.setX(LiftOffConsoleGame.WIDTH - BASE_STEERING_SPEED / 2);
+        testRocket.setX(LiftOffGame.WIDTH - BASE_STEERING_SPEED / 2);
         testRocket.moveRight();
-        assertEquals(LiftOffConsoleGame.WIDTH, testRocket.getX());
+        assertEquals(LiftOffGame.WIDTH - SIZE_X / 2, testRocket.getX());
     }
 
     @Test
     public void testMoveLeftOne() {
         testRocket.moveLeft();
-        assertEquals(LiftOffConsoleGame.WIDTH / 2 -
+        assertEquals(LiftOffGame.WIDTH / 2 -
                         (testRocket.getSteeringLevel() * STEERING_INCREASE_PER_LEVEL + BASE_STEERING_SPEED),
                 testRocket.getX());
     }
@@ -75,14 +75,14 @@ class RocketTest {
     public void testMoveLeftTwo() {
         testRocket.setX(BASE_STEERING_SPEED);
         testRocket.moveLeft();
-        assertEquals(0, testRocket.getX());
+        assertEquals(SIZE_X / 2, testRocket.getX());
     }
 
     @Test
     public void testMoveLeftThree() {
         testRocket.setX( BASE_STEERING_SPEED / 2);
         testRocket.moveLeft();
-        assertEquals(0, testRocket.getX());
+        assertEquals(SIZE_X / 2, testRocket.getX());
     }
 
     @Test
@@ -94,32 +94,15 @@ class RocketTest {
 
     // TODO: rewrite the tests of this f again when
     //       you have better understanding of java coordinate system.
-    // @Test
-    /*
-    public void testCheckCollision() {
-        Obstacle o = new Obstacle();
-        o.setY(Y_POS);
-        o.setX(testRocket.getX());
-        assertTrue(testRocket.checkCollision(o));
-    }
-     */
 
     @Test
-    public void testCheckCollisionTwo() {
-        testRocket.setX(40);
-        assertTrue(testRocket.checkCollisionTwo( new Obstacle(40)));
-        testRocket.setX(55);
-        assertTrue(testRocket.checkCollisionTwo( new Obstacle(40)));
-        testRocket.setX(56);
-        assertTrue(testRocket.checkCollisionTwo( new Obstacle(40)));
-        testRocket.setX(57);
-        assertFalse(testRocket.checkCollisionTwo( new Obstacle(40)));
-        testRocket.setX(80);
-        assertFalse(testRocket.checkCollisionTwo( new Obstacle(40)));
-        testRocket.setX(23);
-        assertFalse(testRocket.checkCollisionTwo( new Obstacle(40)));
-        testRocket.setX(24);
-        assertTrue(testRocket.checkCollisionTwo( new Obstacle(40)));
+    public void testCheckCollision() {
+        Rocket r = testRocket;
+        Obstacle o = new Obstacle(0, 0);
+        assertFalse(testRocket.checkCollision(o));
+
+        o = new Obstacle(r.getX(), Y_POS);
+        assertTrue(testRocket.checkCollision(o));
     }
 
     @Test

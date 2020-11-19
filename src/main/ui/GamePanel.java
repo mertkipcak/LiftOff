@@ -35,7 +35,7 @@ public class GamePanel extends JPanel {
         setBackground(LiftOffGame.GAME_BACKGROUND);
         try {
             backgroundImage = ImageIO.read(new File("./textures/starryBackground.jpg"));
-            rocketImage = ImageIO.read(new File("./textures/BasicRocket.jpg"));
+            rocketImage = ImageIO.read(new File("./textures/Rocket.jpg"));
         } catch (IOException ex) {
             System.out.println("Wasn't able to get textures");
         }

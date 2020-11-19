@@ -11,6 +11,10 @@ public abstract class Control {
         rocketX = x;
     }
 
+    public int getRocketX() {
+        return rocketX;
+    }
+
     public abstract void leftAction();
 
     public abstract void rightAction();

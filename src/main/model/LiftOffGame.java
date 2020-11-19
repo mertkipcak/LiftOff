@@ -64,7 +64,10 @@ public class LiftOffGame {
         return ticksTillNewObstacle;
     }
 
-    // setter methods
+    public void setTicksTillNewObstacle(int i) {
+        ticksTillNewObstacle = i;
+    }
+
     public void setShop(boolean b) {
         isShopOpen = b;
     }
@@ -108,6 +111,8 @@ public class LiftOffGame {
             saveGame();
         } else if (keyCode == KeyEvent.VK_L) {
             loadGame();
+        } else if (keyCode == KeyEvent.VK_C) {
+            rocket.flipControls();
         }
     }
 
@@ -189,7 +194,7 @@ public class LiftOffGame {
     public void newDay() {
         rocket.setHealth(rocket.getHealthLevel() + 1);
         rocket.setAlt(0);
-        rocket.setX(WIDTH / 2);
+        rocket.getControl().newDay();
         isShopOpen = false;
         ticksTillNewObstacle = TICKS_PER_OBSTACLE;
         rocket.setFuel(Rocket.INITIAL_FUEL);

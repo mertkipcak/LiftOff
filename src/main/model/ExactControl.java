@@ -7,6 +7,7 @@ public class ExactControl extends Control {
 
     public ExactControl(int x) {
         super(x);
+        type = false;
     }
 
     // MODIFIES: this
@@ -22,7 +23,7 @@ public class ExactControl extends Control {
     }
 
     // MODIFIES: this
-    // EFFECTS: moves to rocket to the right
+    // EFFECTS: moves the rocket to the left
     public void leftAction() {
         rocketX -= steeringLevel * STEERING_INCREASE_PER_LEVEL + BASE_STEERING_SPEED;
         handleBoundary();

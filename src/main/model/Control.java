@@ -6,6 +6,7 @@ public abstract class Control {
 
     protected int rocketX;
     protected int steeringLevel = 0;
+    public boolean type;
 
     public Control(int x) {
         rocketX = x;
@@ -13,6 +14,10 @@ public abstract class Control {
 
     public int getRocketX() {
         return rocketX;
+    }
+
+    public void setRocketX(int rocketX) {
+        this.rocketX = rocketX;
     }
 
     public abstract void leftAction();
@@ -31,5 +36,12 @@ public abstract class Control {
         }
     }
 
+    // EFFECTS: if a certain control scheme moves the rocket at each tick it uses this method
     public abstract void move();
+
+    // MODIFIES: this
+    // EFFECTS: resets the x value of the rocket
+    public void newDay() {
+        rocketX = LiftOffGame.WIDTH / 2;
+    }
 }

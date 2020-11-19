@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static model.Rocket.*;
+import static model.ExactControl.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RocketTest {
@@ -92,9 +93,6 @@ class RocketTest {
         assertEquals(initialFuel - CONSUMPTION_PER_SECOND + testRocket.getFuelLevel(), testRocket.getFuel());
     }
 
-    // TODO: rewrite the tests of this f again when
-    //       you have better understanding of java coordinate system.
-
     @Test
     public void testCheckCollision() {
         Rocket r = testRocket;
@@ -138,5 +136,15 @@ class RocketTest {
         assertEquals(3, testRocket.getSteeringLevel());
     }
 
+    @Test
+    public void testFlipControls() {
+        SmoothControl testSmooth = new SmoothControl(1);
+        ExactControl testExact = new ExactControl(1);
+        assertEquals(testExact.getClass(), testRocket.getControl().getClass());
+        testRocket.flipControls();
+        assertEquals(testSmooth.getClass(), testRocket.getControl().getClass());
+        testRocket.flipControls();
+        assertEquals(testExact.getClass(), testRocket.getControl().getClass());
+    }
 
 }

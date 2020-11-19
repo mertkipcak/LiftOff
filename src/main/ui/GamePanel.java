@@ -104,6 +104,7 @@ public class GamePanel extends JPanel {
 
     // EFFECTS: Draws the right side of the shop
     private void drawShopRightSide(Graphics g) {
+        String typeString;
         g.drawString("Money: $" + game.getRocket().playerMoney, LiftOffGame.WIDTH / 2, 40);
         g.drawString("Speed upgrades: " + game.getRocket().getSpeedLevel(),
                 LiftOffGame.WIDTH / 2,
@@ -117,6 +118,15 @@ public class GamePanel extends JPanel {
         g.drawString("Steering upgrades: " + game.getRocket().getSteeringLevel(),
                 LiftOffGame.WIDTH / 2,
                 40 + 4 * STRING_DISTANCE_VERTICAL);
+        if (game.getRocket().getControl().type) {
+            typeString = "Smooth";
+        } else {
+            typeString = "Exact";
+        }
+        g.drawString("Current control type: " + typeString,
+                LiftOffGame.WIDTH / 2,
+                40 + 5 * STRING_DISTANCE_VERTICAL);
+
     }
 
 
@@ -127,9 +137,11 @@ public class GamePanel extends JPanel {
         g.drawString("2: Upgrade rocket fuel", 20, 40 + 2 * STRING_DISTANCE_VERTICAL);
         g.drawString("3: Upgrade rocket health", 20, 40 + 3 * STRING_DISTANCE_VERTICAL);
         g.drawString("4: Upgrade rocket steering", 20, 40 + 4 * STRING_DISTANCE_VERTICAL);
-        g.drawString("R: Reset game", 20, 40 + 5 * STRING_DISTANCE_VERTICAL);
-        g.drawString("S: save game", 20, 40 + 6 * STRING_DISTANCE_VERTICAL);
-        g.drawString("L: Load game", 20, 40 + 7 * STRING_DISTANCE_VERTICAL);
+        g.drawString("C: Toggle controls", 20, 40 + 5 * STRING_DISTANCE_VERTICAL);
+        g.drawString("R: Reset game", 20, 40 + 6 * STRING_DISTANCE_VERTICAL);
+        g.drawString("S: save game", 20, 40 + 7 * STRING_DISTANCE_VERTICAL);
+        g.drawString("L: Load game", 20, 40 + 8 * STRING_DISTANCE_VERTICAL);
+
     }
 
 }

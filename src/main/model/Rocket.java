@@ -12,12 +12,8 @@ public class Rocket implements Writable {
     public static final int SIZE_Y = 50;                          // height of the rocket
     public static final int SIZE_X = 24;                           // width of the rocket
     public static final int INITIAL_FUEL = 10000;
-    public static final int BASE_STEERING_SPEED = 10;
-    public static final int STEERING_INCREASE_PER_LEVEL = 5;
-
 
     public int playerMoney = 0;
-    protected int rocketX;            // x position of the rocket on the screen
     protected int steeringLevel = 0;          // number of steering upgrades done
     private int fuel = INITIAL_FUEL;                 // fuel that is left in the rocket
     private int alt = 0;                    // altitude of the rocket
@@ -29,7 +25,6 @@ public class Rocket implements Writable {
 
 
     public Rocket(int x) {
-        rocketX = x;
         control = new ExactControl(x);
     }
 
@@ -47,12 +42,12 @@ public class Rocket implements Writable {
     // EFFECTS for all get and set values:  getA returns A
     //                                      setA(a) sets A to a
     public int getX() {
-        return rocketX;
+        return control.getRocketX();
     }
 
     // REQUIRES: 0 < x < LiftOffGame.WIDTH
     public void setX(int x) {
-        this.rocketX = x;
+        this.control.setRocketX(x);
     }
 
     public int getAlt() {
@@ -128,17 +123,6 @@ public class Rocket implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: sets the x vale of the rocket to edge values (0 and LiftOffGame.WIDTH)
-    //          if it tries to move past them
-    public void handleBoundary() {
-        if (rocketX < SIZE_X / 2) {
-            rocketX = SIZE_X / 2;
-        } else if (rocketX > LiftOffGame.WIDTH - SIZE_X / 2) {
-            rocketX = LiftOffGame.WIDTH - SIZE_X / 2;
-        }
-    }
-
-    // MODIFIES: this
     // EFFECTS: uses the fuel depending on the fuel upgrade level
     public void useFuel() {
         fuel -= CONSUMPTION_PER_SECOND - fuelLevel;
@@ -174,15 +158,21 @@ public class Rocket implements Writable {
     // MODIFIES: this
     // EFFECTS: moves to rocket to the right
     public void moveRight() {
-        rocketX += steeringLevel * STEERING_INCREASE_PER_LEVEL + BASE_STEERING_SPEED;
-        handleBoundary();
+        control.rightAction();
     }
 
     // MODIFIES: this
     // EFFECTS: moves to rocket to the right
     public void moveLeft() {
-        rocketX -= steeringLevel * STEERING_INCREASE_PER_LEVEL + BASE_STEERING_SPEED;
-        handleBoundary();
+        control.leftAction();
+    }
+
+    public void flipControls() {
+        if (control.type) {
+            control = new ExactControl(control.getRocketX());
+        } else {
+            control = new SmoothControl(control.getRocketX());
+        }
     }
 
 }

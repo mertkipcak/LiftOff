@@ -43,6 +43,8 @@ public class LiftOffGameTest {
         assertEquals(WIDTH / 2 + BASE_STEERING_SPEED, testGame.getRocket().getX());
         testGame.controlKey(KeyEvent.VK_KP_RIGHT);
         assertEquals(WIDTH / 2 + 2 * BASE_STEERING_SPEED, testGame.getRocket().getX());
+        testGame.controlRocket(1);
+        assertEquals(WIDTH / 2 + 2 * BASE_STEERING_SPEED, testGame.getRocket().getX());
     }
 
     @Test

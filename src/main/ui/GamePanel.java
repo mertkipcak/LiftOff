@@ -30,6 +30,7 @@ public class GamePanel extends JPanel {
     // Constructs a game panel
     // EFFECTS: sets size and background colour of panel
     //          updates this with the game to be displayed
+    //          also imports images
     public GamePanel(LiftOffGame g) {
         setPreferredSize(new Dimension(LiftOffGame.WIDTH, LiftOffGame.HEIGHT));
         setBackground(LiftOffGame.GAME_BACKGROUND);
@@ -64,17 +65,23 @@ public class GamePanel extends JPanel {
         drawData(g);
     }
 
+    // MODIFIES: g
+    // EFFECTS: draws the rocket onto game panel
     private void drawRocket(Graphics g) {
         Rocket r = game.getRocket();
         g.drawImage(rocketImage, r.getX() - Rocket.SIZE_X / 2, Rocket.Y_POS - Rocket.SIZE_Y / 2, null);
     }
 
+    // MODIFIES: g
+    // EFFECTS: draws all the obstacles in the game
     private void drawObstacles(Graphics g) {
         for (Obstacle o: game.getObstacles()) {
             drawObstacle(g, o);
         }
     }
 
+    // MODIFIES: g
+    // EFFECTS: draws a single obstacle in the game
     private void drawObstacle(Graphics g, Obstacle o) {
         Color savedCol = g.getColor();
         g.setColor(Obstacle.COLOR);
@@ -83,6 +90,8 @@ public class GamePanel extends JPanel {
         g.setColor(savedCol);
     }
 
+    // MODIFIES: g
+    // EFFECTS: draw the current fuel, altitude and health of the rocket on top left.
     private void drawData(Graphics g) {
         Color savedCol = g.getColor();
         g.setColor(TEXT_COLOR);
@@ -102,6 +111,7 @@ public class GamePanel extends JPanel {
         g.setColor(savedCol);
     }
 
+    // MODIFIES: g
     // EFFECTS: Draws the right side of the shop
     private void drawShopRightSide(Graphics g) {
         String typeString;
@@ -129,7 +139,7 @@ public class GamePanel extends JPanel {
 
     }
 
-
+    // MODIFIES: g
     // EFFECTS: draws the left side of the shop
     private void drawShopLeftSide(Graphics g) {
         g.drawString("Space: Start a new day", 20, 40);

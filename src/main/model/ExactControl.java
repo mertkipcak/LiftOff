@@ -1,5 +1,6 @@
 package model;
 
+// control scheme where pressing left moves the rocket left by a constant
 public class ExactControl extends Control {
 
     public static final int BASE_STEERING_SPEED = 10;

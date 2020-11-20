@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+// represents the game itself
 public class LiftOffGame {
 
     public static final int HEIGHT = 800;
@@ -36,6 +37,7 @@ public class LiftOffGame {
         jsonReader = new JsonReader(JSON_STORE);
     }
 
+    // constructor made for specific tests
     public LiftOffGame(JsonReader jr, JsonWriter jw) {
         obstacles = new ArrayList<>();
         rocket = new Rocket(WIDTH / 2);

@@ -2,6 +2,7 @@ package model;
 
 import static model.Rocket.SIZE_X;
 
+// control scheme that makes the rocket speed up towards the side of input
 public class SmoothControl extends Control {
 
     private int speed = 0;

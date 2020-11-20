@@ -2,6 +2,7 @@ package model;
 
 import static model.Rocket.SIZE_X;
 
+// superclass for all the types of control schemes
 public abstract class Control {
 
     protected int rocketX;

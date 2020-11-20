@@ -19,17 +19,10 @@ I may add a theme and visual later on as I progress through the project.
 
 Json implementation have been heavily inspired and copied from JsonSerializationDemo.
 
-## Note for the first phase
+## Phase 4: Task 2
 
-First phase of the game will be designed as a console game where player tries to find an 
-x value for the rocket where the rocket will not hit any obstacles (obstacles will have a x value 
-and side length that the player needs to dodge. I did this as it is impossible to 
-implement the final real time 2D game to a console interface. However, all the "User Stories"
-are implemented for LiftOffConsoleGame. LiftOffGame and its tests have been completely commented out
-as they will not be used until further phases. Tests for non-console game are also not
-completed yet as I need to learn more about the java coordinate system.
-
-**Also in this version of the game width of the rocket is just 1**
+added type hierarchy for control related classes where both ExactControl and SmoothControl
+extends Control and they implement rightAction and leftAction differently.
 
 ## User Stories
 

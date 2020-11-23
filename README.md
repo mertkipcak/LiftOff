@@ -21,7 +21,7 @@ Json implementation have been heavily inspired and copied from JsonSerialization
 
 ## Phase 4: Task 2
 
-added type hierarchy for control related classes where both ExactControl and SmoothControl
+Added type hierarchy for control related classes where both ExactControl and SmoothControl
 extends Control and they implement rightAction and leftAction differently.
 
 ## User Stories
@@ -33,4 +33,12 @@ extends Control and they implement rightAction and leftAction differently.
 - As a user, I would like to be able to lose a life when I hit obstacles.
 - As a user, I would like to be able to finish the day when my life reaches 0.
 - As a user, I would like to be able to save my progress in the game.
-- As a user, when I start the application, I want to be given the opportunity to load my progress or start a new game.
+- As a user, when I start the application, I want to be given the opportunity 
+to load my progress or start a new game.
+
+## Phase 4: Task 3
+
+For now, the only coupling I see int the design diagram is the field LiftOffGame in the class (as
+LiftOffGame can also be reached from GamePanel. If I was to improve
+on this project I would change fields to use the observer pattern.
+

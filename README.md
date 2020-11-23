@@ -38,7 +38,6 @@ to load my progress or start a new game.
 
 ## Phase 4: Task 3
 
-For now, the only coupling I see int the design diagram is the field LiftOffGame in the class (as
-LiftOffGame can also be reached from GamePanel. If I was to improve
+For now, I don't see any coupling in the design diagram. If I was to improve
 on this project I would change fields to use the observer pattern.
 

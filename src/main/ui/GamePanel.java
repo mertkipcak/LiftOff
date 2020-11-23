@@ -20,7 +20,8 @@ public class GamePanel extends JPanel {
 
     private static final Color TEXT_COLOR = new Color(255, 255, 255);
 
-    private LiftOffGame game;
+    public LiftOffGame game;
+
     private Image backgroundImage;
     private BufferedImage rocketImage;
 

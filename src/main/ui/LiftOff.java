@@ -10,7 +10,6 @@ import java.awt.event.KeyEvent;
 public class LiftOff extends JFrame {
 
     private static final int INTERVAL = 20;
-    private final LiftOffGame game;
     private final GamePanel gp;
 
 
@@ -20,8 +19,7 @@ public class LiftOff extends JFrame {
         super("Lift Off");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
-        game = new LiftOffGame();
-        gp = new GamePanel(game);
+        gp = new GamePanel(new LiftOffGame());
         add(gp);
         addKeyListener(new KeyHandler());
         pack();
@@ -40,7 +38,7 @@ public class LiftOff extends JFrame {
     //           INTERVAL milliseconds
     private void addTimer() {
         Timer t = new Timer(INTERVAL, ae -> {
-            game.update();
+            gp.game.update();
             gp.repaint();
         });
 
@@ -61,7 +59,7 @@ public class LiftOff extends JFrame {
     private class KeyHandler extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
-            game.controlKey(e.getKeyCode());
+            gp.game.controlKey(e.getKeyCode());
         }
     }
 }

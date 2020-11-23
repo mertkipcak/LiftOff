@@ -167,6 +167,8 @@ public class Rocket implements Writable {
         control.leftAction();
     }
 
+    // MODIFIES: control
+    // EFFECTS: Switches the type of the control
     public void flipControls() {
         if (control.type) {
             control = new ExactControl(control.getRocketX());

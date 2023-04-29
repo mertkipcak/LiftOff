@@ -1,4 +1,4 @@
-# Liftoff (will probably change the name later)
+# Liftoff
 
 ## Game description
 

@@ -1,3 +1,7 @@
+# Note
+
+This is my first ever coding project, made in 2020 ~September. First time I ever wrote code, oh if I knew what was to come...
+
 # Liftoff
 
 ## Game description
